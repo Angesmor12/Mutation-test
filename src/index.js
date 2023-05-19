@@ -6,7 +6,7 @@ const app = express();
 // Middleware para aceptar archivos json.
 app.use(express.json());
 
-port = 4000;
+port = 3000;
 
 app.use(router)
 
