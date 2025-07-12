@@ -1,7 +1,9 @@
 name: 'Node'
 
 on:
-  push:
+  push::
+    branches: [ main ]
+
 
 
 jobs:
