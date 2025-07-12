@@ -11,4 +11,20 @@ jobs:
       - name: 'step - hello world'
         run: echo "hello world"
 
+      - name: 'step - checkout'
+        uses: action/checkout@v1
+
+      - name: 'step - setup node'
+        uses: actions/setup-node@v1
+        with:
+          node-version: 20
         
+      - name: 'step - dependencies'
+        run: npm ci
+
+      - name: 'step - build'
+        run: npm i
+
+      - name: 'step - test'
+        run: npm run test
+          
