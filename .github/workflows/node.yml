@@ -22,7 +22,7 @@ jobs:
         # Si hay cambios se va a volver a actualizar todo
         # En caso contrario, se guardara todo en cache 
           path: 'node_modules'
-          key: ${{ runner.os }}-node_module-${{ hashFile('package*.json') }}-${{ hashFile('.github/workflows/node.yml') }}
+          key: ${{ runner.os }}-node_module-${{ hashFiles('package*.json') }}-${{ hashFile('.github/workflows/node.yml') }}
 
       - name: 'step - setup node'
         uses: actions/setup-node@v4
