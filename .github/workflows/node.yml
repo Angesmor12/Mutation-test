@@ -8,20 +8,32 @@ jobs:
   run:
     runs-on: ubuntu-latest
     steps:
+    
       - name: 'step - hello world'
         run: echo "hello world"
-
+    # Pasa copiar el repositorio en donde nos estamos conectado
       - name: 'step - checkout'
         uses: actions/checkout@v4
+
+      - name: 'step - cache dependencies'
+        id: cache-node_modules
+        uses: actions/cache@v4
+        with:
+        # Si hay cambios se va a volver a actualizar todo
+        # En caso contrario, se guardara todo en cache 
+          path: 'node_modules'
+          key: ${{ runner.os }}-node_module-${{ hashFile('package*.json') }}-${{ hashFile('.github/workflows/node.yml') }}
 
       - name: 'step - setup node'
         uses: actions/setup-node@v4
         with:
           node-version: 20
+          cache: npm
         
       - name: 'step - dependencies'
+        if: steps.cache-node_modules.outputs.cache-hit != 'true'
         run: npm ci
-
+        
       - name: 'step - build'
         run: npm i
 
