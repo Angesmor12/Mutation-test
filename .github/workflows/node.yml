@@ -12,10 +12,10 @@ jobs:
         run: echo "hello world"
 
       - name: 'step - checkout'
-        uses: action/checkout@v1
+        uses: actions/checkout@v4
 
       - name: 'step - setup node'
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v4
         with:
           node-version: 20
         
